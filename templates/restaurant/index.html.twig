@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RestaurantController!
+{% endblock %}
+
+{% block body %}
+	<h1>Our restaurants</h1>
+	<hr>
+	<div class="restos row">
+		{% for resto in restos %}
+			<div class="card m-3" style="width: 18rem;">
+				<img class="card-img-top" src="https://focus.nouvelobs.com/2022/09/08/1693/0/4160/2080/675/0/75/0/bfb884a_1662650206281-le-bal-x-alberto-7.jpg/webp" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">{{resto.name}}</h5>
+					<p class="card-text">{{resto.description}}</p>
+					<a href="{{path('restaurant_details', { id: resto.id})}}" class="btn btn-primary">Details</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
