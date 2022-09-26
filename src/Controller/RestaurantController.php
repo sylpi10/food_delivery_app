@@ -31,4 +31,14 @@ class RestaurantController extends AbstractController
             'resto' => $resto
         ]);
     }
+
+
+    // #[Route('api/restaurant', name: 'restaurant')]
+    // public function api_resto(): Response
+    // {
+    //     $restaurants = $this->restaurantRepository->findAll();
+    //     return $this->render('restaurant/index.html.twig', [
+    //         'restos' => $restaurants,
+    //     ]);
+    // }
 }

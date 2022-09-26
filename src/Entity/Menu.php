@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MenuRepository::class)]
+#[ApiResource()]
 class Menu
 {
     #[ORM\Id]
@@ -31,7 +33,7 @@ class Menu
     #[ORM\ManyToMany(targetEntity: MenuItem::class, mappedBy: 'menu')]
     private Collection $menuItems;
 
-    #[ORM\ManyToOne(inversedBy: 'menu', fetch: 'EAGER')]
+    #[ORM\ManyToOne(inversedBy: 'menu')]
     private ?Restaurant $restaurant = null;
 
     public function __construct()

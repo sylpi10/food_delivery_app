@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\RestaurantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RestaurantRepository::class)]
+#[ApiResource()]
 class Restaurant
 {
     #[ORM\Id]
@@ -36,6 +38,12 @@ class Restaurant
 
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Review::class, fetch: 'EAGER')]
     private Collection $review;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $lattitude = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $longitude = null;
 
     public function __construct()
     {
@@ -164,6 +172,30 @@ class Restaurant
                 $review->setRestaurant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLattitude(): ?string
+    {
+        return $this->lattitude;
+    }
+
+    public function setLattitude(?string $lattitude): self
+    {
+        $this->lattitude = $lattitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?string $longitude): self
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }
