@@ -36,7 +36,7 @@ class Restaurant
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Menu::class, fetch: 'EAGER')]
     private Collection $menu;
 
-    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Review::class, fetch: 'EAGER')]
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Review::class)]
     private Collection $review;
 
     #[ORM\Column(length: 255, nullable: true)]

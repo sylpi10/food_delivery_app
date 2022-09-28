@@ -1,20 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OrderController!{% endblock %}
+{% block title %}Orders!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<h1>Orders</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/sylpi/symfony_projects/3wa_sf/deliveroo_clone/src/Controller/OrderController.php'|file_link(0) }}">src/Controller/OrderController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/sylpi/symfony_projects/3wa_sf/deliveroo_clone/templates/order/index.html.twig'|file_link(0) }}">templates/order/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<div class="orders">
+		{% for order in orders %}
+			<h4>Order number:
+				{{order.orderNumber}}</h4>
+			<h5 class="text-warning">${{order.price}}</h5>
+			<h6>Creation:
+				{{order.createdAt|date('d/m/y')}}</h6>
+			<h6>Status:
+				{{order.status}}</h6>
+
+		{% endfor %}
+	</div>
+
 {% endblock %}

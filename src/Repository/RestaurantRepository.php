@@ -39,28 +39,33 @@ class RestaurantRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Restaurant[] Returns an array of Restaurant objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Restaurant[] Returns an array of Restaurant objects
+     */
+    public function findByLatLon($lat, $lon): array
+    {
+        return $this->createQueryBuilder('r')
+            ->Where('r.lattitude > :lat1')
+            ->andWhere('r.lattitude < :lat2')
+            ->setParameter('lat1', ($lat - 3))
+            ->setParameter('lat2', ($lat + 3))
+            ->andWhere('r.longitude > :lon1')
+            ->andWhere('r.longitude < :lon2')
+            ->setParameter('lon1', ($lon - 3))
+            ->setParameter('lon2', ($lon + 3))
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Restaurant
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Restaurant
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

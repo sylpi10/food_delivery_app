@@ -36,9 +36,13 @@ class Menu
     #[ORM\ManyToOne(inversedBy: 'menu')]
     private ?Restaurant $restaurant = null;
 
+    #[ORM\ManyToMany(targetEntity: Order::class, inversedBy: 'menus')]
+    private Collection $orders;
+
     public function __construct()
     {
         $this->menuItems = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,6 +133,30 @@ class Menu
     public function setRestaurant(?Restaurant $restaurant): self
     {
         $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        $this->orders->removeElement($order);
 
         return $this;
     }

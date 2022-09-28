@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}resto api
+{% endblock %}
+
+{% block body %}
+	<h1>Our restaurants</h1>
+	<hr>
+	<div class="restos row">
+		{% for resto in restos %}
+			<div class="card m-3" style="width: 18rem;">
+				<img class="card-img-top" src="https://focus.nouvelobs.com/2022/09/08/1693/0/4160/2080/675/0/75/0/bfb884a_1662650206281-le-bal-x-alberto-7.jpg/webp" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">{{resto.name}}</h5>
+					<p class="card-text">{{resto.description}}</p>
+					<a href="{{path('restaurant_details', { id: resto.id})}}" class="btn btn-primary">Details</a>
+				</div>
+				{% if resto.review %}
+					<div class="border-bottom">
+						{% for review in resto.review %}
+							<p class="ml-3">{{review.user.username}}
+								rated :
+								{{review.rate}}/5</p>
+						{% endfor %}
+					</div>
+				{% endif %}
+
+				{% if app.user %}
+					<div class="rate-add mt-3 p-2">
+						<h5>Add a rate</h5>
+
+						<form action="{{ path('restos', {lat: resto.lattitude, lon: resto.longitude}) }}" method="POST">
+							<input type="number" name="rate" id="rate" min="0" max="5">
+							<input type="hidden" name="restoId" value={{resto.id}}>
+							<button type="submit" class="btn btn-primary">Rate</button>
+						</form>
+
+					</div>
+				{% endif %}
+			</div>
+
+		{% endfor %}
+	</div>
+{% endblock %}

@@ -13,12 +13,12 @@
 		<hr>
 		<h2>Our menus</h2>
 		<div class="row">
-			{% for menu in resto.menu %}
+			{% for menu in menus %}
 				<div class="card m-3" style="width: 18rem;">
 					<img class="card-img-top" src="https://focus.nouvelobs.com/2022/09/08/1693/0/4160/2080/675/0/75/0/bfb884a_1662650206281-le-bal-x-alberto-7.jpg/webp" alt="Card image cap">
 					<div class="card-body">
 						<h5 class="card-title">{{menu.name}}</h5>
-						<h6 class="card-subtitle text-warning">${{menu.price|number_format(2)}}</h6>
+						<h6 class="card-subtitle text-warning">${{menu.price|number_format(2, ',')}}</h6>
 						<p class="card-text">{{menu.description}}</p>
 					</div>
 					<ul class="list-group">
@@ -26,7 +26,10 @@
 							<li class="list-group-item">{{item.name}}</li>
 						{% endfor %}
 					</ul>
-					<button class="btn-success btn">Order</button>
+					<form method="POST">
+						<input type="hidden" name="menuId" value={{menu.id}}>
+						<button type="submit" class="btn-success btn">Order</button>
+					</form>
 				</div>
 			{% endfor %}
 		</div>

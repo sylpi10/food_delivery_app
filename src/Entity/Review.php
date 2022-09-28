@@ -22,7 +22,7 @@ class Review
     #[ORM\ManyToOne(inversedBy: 'user')]
     private ?Restaurant $restaurant = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reviews')]
+    #[ORM\ManyToOne(inversedBy: 'reviews',  fetch: 'EAGER')]
     private ?User $user = null;
 
     public function getId(): ?int

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Order
+{% endblock %}
+
+{% block body %}
+
+	<h1>Orders</h1>
+
+	<div class="orders">
+		<h4>Order number:
+			{{order.orderNumber}}</h4>
+		<h5 class="text-warning">${{order.price}}</h5>
+		<h6>Creation:
+			{{order.createdAt|date('d/m/y')}}</h6>
+		<h6>Status:
+			{{order.status}}</h6>
+	</div>
+	<div class="menu">
+		<h4>Menu:
+			{{order.menus[0].name}}</h4>
+	</div>
+
+{% endblock %}
