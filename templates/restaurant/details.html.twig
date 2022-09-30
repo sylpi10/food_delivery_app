@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RestaurantController!
+{% block title %}resto
 {% endblock %}
 
 {% block body %}
@@ -26,10 +26,12 @@
 							<li class="list-group-item">{{item.name}}</li>
 						{% endfor %}
 					</ul>
-					<form method="POST">
+
+					<form action="{{path('order_creation', {id: menu.id})}}" method="POST">
 						<input type="hidden" name="menuId" value={{menu.id}}>
 						<button type="submit" class="btn-success btn">Order</button>
 					</form>
+
 				</div>
 			{% endfor %}
 		</div>

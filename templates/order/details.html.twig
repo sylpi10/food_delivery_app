@@ -5,20 +5,84 @@
 
 {% block body %}
 
-	<h1>Orders</h1>
+	<h1>Your Order</h1>
 
-	<div class="orders">
-		<h4>Order number:
-			{{order.orderNumber}}</h4>
-		<h5 class="text-warning">${{order.price}}</h5>
-		<h6>Creation:
-			{{order.createdAt|date('d/m/y')}}</h6>
-		<h6>Status:
-			{{order.status}}</h6>
-	</div>
-	<div class="menu">
-		<h4>Menu:
-			{{order.menus[0].name}}</h4>
+
+	<div class="order">
+
+		<table class="table col-6">
+			<tbody>
+				<tr>
+					<th scope="row">
+						<h5 class="text-success">Menu:
+						</h5>
+					</th>
+					<td>
+						<h5 class="text-success">{{order.menus[0].name}}</h5>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<h5 class="text-success">Order number:
+						</h5>
+					</th>
+					<td>
+						<h5 class="text-success">{{order.orderNumber}}</h5>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<h5 class="text-success">Creation:
+						</h5>
+					</th>
+					<td>
+						<h5 class="text-success">{{order.createdAt|date('d/m/y')}}</h5>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<h5 class="text-white">Status:
+						</h5>
+					</th>
+					<td>
+						<h5 class="text-white">{{order.status}}</h5>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<h5 class="text-warning">Menu price:
+						</h5>
+					</th>
+					<td>
+						<h5 class="text-warning">${{order.price}}</h5>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<h5 class="text-warning">Tax
+						</h5>
+					</th>
+					<td>
+						<h5 class="text-warning">${{percentage}}</h5>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<h5 class="text-warning font-weight-bold">Total:
+						</h5>
+					</th>
+					<td>
+						<h5 class="text-warning font-weight-bold">
+							$
+							{{finalPrice}}
+						</h5>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<button class="btn btn-success">Confirm order</button>
+
 	</div>
 
 {% endblock %}

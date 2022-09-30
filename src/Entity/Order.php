@@ -17,7 +17,7 @@ class Order
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $order_number = null;
+    private ?string $order_number = null;
 
     #[ORM\Column]
     private ?float $price = null;
@@ -44,12 +44,12 @@ class Order
         return $this->id;
     }
 
-    public function getOrderNumber(): ?int
+    public function getOrderNumber(): ?string
     {
         return $this->order_number;
     }
 
-    public function setOrderNumber(int $order_number): self
+    public function setOrderNumber(string $order_number): self
     {
         $this->order_number = $order_number;
 

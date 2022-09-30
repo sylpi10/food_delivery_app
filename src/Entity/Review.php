@@ -19,7 +19,7 @@ class Review
     #[ORM\Column]
     private ?int $rate = null;
 
-    #[ORM\ManyToOne(inversedBy: 'user')]
+    #[ORM\ManyToOne(inversedBy: 'review', fetch: 'EAGER')]
     private ?Restaurant $restaurant = null;
 
     #[ORM\ManyToOne(inversedBy: 'reviews',  fetch: 'EAGER')]

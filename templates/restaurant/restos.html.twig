@@ -4,6 +4,18 @@
 {% endblock %}
 
 {% block body %}
+
+	{% for message in app.flashes('notice') %}
+		<div class="alert alert-success" role="alert">
+			{{message}}
+		</div>
+	{% endfor %}
+	{% for message in app.flashes('error') %}
+		<div class="alert alert-danger">
+			{{ message }}
+		</div>
+	{% endfor %}
+
 	<h1>Our restaurants</h1>
 	<hr>
 	<div class="restos row">
@@ -34,9 +46,11 @@
 							<input type="hidden" name="restoId" value={{resto.id}}>
 							<button type="submit" class="btn btn-primary">Rate</button>
 						</form>
-
 					</div>
+				{% else %}
+					<p class="p-2 text-secondary">You must be logged in to add a rate</p>
 				{% endif %}
+
 			</div>
 
 		{% endfor %}

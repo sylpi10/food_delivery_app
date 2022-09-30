@@ -33,7 +33,7 @@ class Restaurant
     #[ORM\Column(length: 255)]
     private ?string $city = null;
 
-    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Menu::class, fetch: 'EAGER')]
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Menu::class)]
     private Collection $menu;
 
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Review::class)]
